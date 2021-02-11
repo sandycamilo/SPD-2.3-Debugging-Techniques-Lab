@@ -2,20 +2,32 @@
 # Decompose conditional: You have a complicated conditional(if-then-else) statement. Extract
 # methods from the condition, then part, and else part(s).
 
+ingredients = ['sodium benzoate']
+toxins = ['sodium nitrate', 'sodium benzoate', 'sodium oxide']
+
 def make_alert_sound():
     print('made alert sound.')
+    
 def make_accept_sound():
     print('made acceptance sound')
 
-ingredients = ['sodium benzoate']
-if 'sodium nitrate' in ingredients or 'sodium benzoate' in ingredients\
-or 'sodium oxide' in ingredients:
-    print('!!!')
-    print('there is a toxin in the food!')    
-    print('!!!')
-    make_alert_sound()
-else:
+def no_toxin():
     print('***')
     print('Toxin Free')
     print('***')
-    make_accept_sound()
+    return make_accept_sound()
+
+def toxin_present():
+    print('!!!')
+    print('there is a toxin in the food!')    
+    print('!!!')
+    return make_alert_sound()
+
+def check_for_toxin():
+    for ingredient in ingredients:
+        if ingredient in toxins:
+            return toxin_present()
+        else: 
+            return no_toxin()
+
+check_for_toxin()
