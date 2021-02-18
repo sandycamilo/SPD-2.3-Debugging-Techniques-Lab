@@ -1,23 +1,26 @@
 # Written by Kamran Bigdely
 # Example for Compose Methods: Extract Method.
 import math 
+
 grade_list = []
 
 def input_from_user():
-    # Get the inputs from the user
+    # Get the inputs from the user.
     n_student = 5
     for _ in range(0, n_student):
         grade_list.append(int(input('Enter a number: ')))
     return grade_list
 
 def calculate_mean(grade_list):
-    sum = 0 # Do you think 'sum' is a good var name? Run pylint to figure out!
+    # Calculae the mean.
+    total = 0 
     for grade in grade_list:
-        sum =+ grade
-        mean = sum / len(grade_list)
+        total =+ grade
+        mean = total / len(grade_list)
     return mean 
 
 def calculate_sd(mean):
+    # Calculate the standard deviation.
     for grade in grade_list:
         sd = 0 # standard deviation
         sum_of_sqrs = 0
@@ -31,7 +34,6 @@ def print_results(mean, sd):
     print("The grades's mean is:", mean)
     print('The population standard deviation of grades is: ', round(sd, 3))
     print('****** END ******')
-
 
 input_from_user()
 calculate_mean(grade_list)
