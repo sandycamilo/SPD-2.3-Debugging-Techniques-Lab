@@ -1,5 +1,6 @@
 # by Kami Bigdely
 # Consolidate duplicate conditional fragments
+
 def add(mix, something):
     mix.append(something)
     return mix
@@ -7,6 +8,14 @@ def add(mix, something):
 def mixer_ice_with_cream():
     print('mixed ice with cream.')
     return ['ice', 'cream']
+
+def make_drink(drink, addons):
+    mix = []
+    mix = add(mix, addons)
+
+def coffee():
+    ingredient = 'coffee'
+    return make_drink()
 
 def make_drink(drink, addons):
     if 'coffee' in drink:
