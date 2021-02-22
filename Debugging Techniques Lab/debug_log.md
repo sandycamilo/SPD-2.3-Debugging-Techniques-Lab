@@ -15,7 +15,14 @@ _Then I noticed another bug ..._
 
 ## Exercise 1
 
-[[Your answer goes here!]]
+-What is the expected vs. actual output?
+  expected: 
+  actaul:
+- If there is a stack trace, what useful information does it contain?
+
+- Which technique did you use, on which line numbers?
+  Divide and Conquer ~ 
+- What assumptions did you have about each line of code, and which ones were proven to be wrong?
 
 ## Exercise 2
 
