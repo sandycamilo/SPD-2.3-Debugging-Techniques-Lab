@@ -1,20 +1,31 @@
 # Written by Kamran Bigdely
 # Example for Compose Methods: Extract Method.
+
 import math
-xc1 = 4
-yc1 = 4.25
 
-xc2 = 53
-yc2 = -5.35
-# Calculate the distance between the two circle
-distance = math.sqrt((xc1-xc2)**2 + (yc1 - yc2)**2)
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def calculate_distance(self, b):
+        return math.sqrt((self.x-b.x)**2 + (self.y - b.y)**2)
+
+class Circle(Vector):
+     """Calculates the length of vector AB vector which is a 
+      vector between A and B points."""
+    def __init__(self, x, y, radius=None):
+        super().__init__(x, y)
+        self.radius = radius
+
+# create two new circles
+circle1 = Circle(4, 4.25)
+circle2 = Circle(53, -5.35)
+
+distance = circle1.calculate_distance(circle2)
 print('distance', distance)
-# *** somewhere else in your program ***
-xa = -36
-ya = 97
 
-xb = .34
-yb = .91
-# calcualte the length of vector AB vector which is a vector between A and B points.
-length = math.sqrt((xa-xb)*(xa-xb) + (ya-yb)*(ya-yb))
+vector1 = Vector(-36, 97)
+vector2 = Vector(.34, .91)
+length = vector1.calculate_distance(vector2)
 print('length', length)
