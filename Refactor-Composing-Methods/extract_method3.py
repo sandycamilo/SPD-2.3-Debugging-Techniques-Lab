@@ -1,30 +1,30 @@
-# Written by Kamran Bigdely
-# Example for Compose Methods: Extract Method.
+# # Written by Kamran Bigdely
+# # Example for Compose Methods: Extract Method. 
+# # Find the duplicate logic and extract a method for it.
 
 import math
 
-class Vector:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+def calcualte_circle_distance(x1, x2, y1, y2): 
+    """Calculates the distance between two circles."""
+    distance = math.sqrt((x1-x2)**2 + (y1 - y2)**2)
+    return distance
 
-    def calculate_distance(self, b):
-        return math.sqrt((self.x - b.x)**2 + (self.y - b.y)**2)
+x1 = 4
+y1 = 4.25
+x2 = 53
+y2 = -5.35
+distance = calcualte_circle_distance(x1, x2, y1, y2)
+print('Distance:', distance)
 
-class Circle(Vector):
-    # The given (x,y) is the midpoint of the circle.
-    def __init__(self, x, y, radius=None):
-        super().__init__(x, y)
-        self.radius = radius   
 
-# Create two new circles.
-circle1 = Circle(4, 4.25)
-circle2 = Circle(53, -5.35)
+def calculate_vector(x1, x2, y1, y2):
+    """Calcualtes the length vector between A and B points."""
+    length = math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2))
+    return length
 
-distance = circle1.calculate_distance(circle2)
-print('distance', distance)
-
-vector1 = Vector(-36, 97)
-vector2 = Vector(.34, .91)
-length = vector1.calculate_distance(vector2)
-print('length', length)
+x1 = -36
+y1 = 97
+x2 = .34
+y2 = .91
+length = calculate_vector(x1, x2, y1, y2)
+print('Length:', length)

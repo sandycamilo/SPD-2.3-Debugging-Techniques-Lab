@@ -1,3 +1,15 @@
+# By Kamran Bigdely Nov. 2020
+# Replace temp variable with query
+# TODO: Use 'extract method' refactoring technique to improve this code. If required, use
+#       'replace temp variable with query' technique to make it easier to extract methods.
+
+class Employer:    
+    def __init__(self, name):
+        self.name = name
+
+    def send(self, students):
+        print("Students' contact info were sent to", self.name + '.')
+
 class Student:
     def __init__(self, gpa, name):
         self.gpa = gpa
@@ -6,22 +18,18 @@ class Student:
     def get_gpa(self):
         return self.gpa
 
-    def send_congrats_email(self):
+    def send_congrat_email(self):
         print("Congrats", self.name + ". You graduated successfully!")
 
-class Employer:
-    def __init__(self, name):
-        self.name = name
-
-    def send(self, students):
-        print("Students' contact info were sent to", self.name + '.')
-
 class School:
-    def __init__(self, students, recruiters) -> None:
+    def __init__(self, students) -> None:
         self.students = students
-        self.recruiters = recruiters
+
+    def process_graduation(self):
+        """Finds the students in the school who have successfully graduated."""
+        return self.print_names_and_email()
     
-    def get_passing_students(self):
+    def get_student_gpa(self):
         min_gpa = 2.5 # minimum acceptable GPA
         passed_students = []
         for student in self.students:
@@ -29,33 +37,33 @@ class School:
                 passed_students.append(student)
         return passed_students
 
-    def process_graduation(self):
-        """Find the students in the school who have successfully graduated and send a congrants email."""
-        passing = self.get_passing_students()
-
-        print('*** Student who graduated *** ')
-        for student in passing:
+    def print_names_and_email(self):
+        """Prints student's name who graduated and send congrats email."""
+        print('*** Students who graduated *** ')
+        passed_students = self.get_student_gpa()
+        for student in passed_students:
+            print('****************************')
             print(student.name)
-            student.send_congrats_email()
+            print('****************************')
+            student.send_congrat_email()
         print('****************************')
-    
-        top_ten = self.get_top_10(passing)
+        
+        top_ten_percent = self.find_top_ten(passed_students)
+        self.send_referral(top_ten_percent)
 
-        self.send_referral(self.recruiters, top_ten)
-
-    def get_top_10(self, passing):
-        """Find the top 10% of them and send their contact to the top employers."""
+    def find_top_ten(self, passing):
+        """Finds the top 10% of students."""
         passing.sort(key=lambda student: student.get_gpa())
-        percentile = 0.9
-        index = int(percentile * len(passing))
+        index = int(0.9 * len(passing))
         return passing[index:]
+    
+    def send_referral(self, top_10_percent):
+        """Sends top 10% referrals to recruiters."""
+        top_employers = [Employer('Microsoft'), Employer('Free Software Foundation'), Employer('Google')]
+        for employer in top_employers:
+            employer.send(students)
 
-    def send_referral(self, recruiters, referral):
-        for r in recruiters:
-            r.send(referral)
-            
-top_employers = [Employer('Microsoft'), Employer('Free Software Foundation'), Employer('Google')]
-students = [Student(2.1, 'donald'), Student(2.3, 'william'), Student(2.7, 'toro'),
-            Student(3.9, 'lili'), Student(3.2,'kami'), Student(3,'sarah')]
-school  = School(students, top_employers)
+students = [Student(2.1, 'Pinocchio'), Student(2.3, 'goku'), Student(2.7, 'toro'), 
+            Student(3.9, 'naruto'), Student(3.2,'kami'), Student(3,'guts')]
+school  = School(students)
 school.process_graduation()
