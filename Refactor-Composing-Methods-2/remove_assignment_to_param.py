@@ -1,16 +1,13 @@
 # By Kami Bigdely
 # Remove assignment to method parameter.
-
 class Distance:
     def __init__(self, value, unit):
         self.unit = unit
         self.value = value
-        
 class Mass:
     def __init__(self, value, unit):
         self.value = value
         self.unit = unit
-        
 def calculate_kinetic_energy(mass, distance, time):
     if distance.unit != 'km':
         if distance.unit == "ly":  # [ly] stands for light-year (measure of distance in astronomy)
@@ -21,7 +18,6 @@ def calculate_kinetic_energy(mass, distance, time):
             print ("unit is Unknown")
             return
     speed = adjusted_distance.value/time # [km per sec]
-
     if mass.unit != 'kg':
         if mass.unit == "solar-mass":
             # convert from solar mass to kg
