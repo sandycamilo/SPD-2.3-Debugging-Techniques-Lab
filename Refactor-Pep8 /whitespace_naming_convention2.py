@@ -2,19 +2,19 @@
 # PEP8 - whitespaces and variable names.
 
 class Pizza:
-    def __init__ (self, bread_type, cheese_type, meat_type, 
+    def __init__(self, bread_type, cheese_type, meat_type, 
                   toppings, size):
-        self.bread_type= bread_type
+        self.bread_type = bread_type
         self.cheese_type = cheese_type
-        self.meat_type= meat_type
+        self.meat_type = meat_type
         self.toppings = toppings
         self.size = size  
 
     @classmethod
-    def create_chicago_pizza (chicago_pizza, size):
+    def create_chicago_pizza(chicago_pizza, size):
         bread = 'deep-dish bread'
         cheese = 'mozzarella cheese'
-        meat= 'italian sausage'
+        meat = 'italian sausage'
         toppings = ['green bell pepper','mushroom', 
                     'chunky tomato sauce', 'onion']
         return chicago_pizza(bread, cheese, meat, toppings, size) 

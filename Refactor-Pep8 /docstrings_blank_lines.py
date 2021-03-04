@@ -10,12 +10,10 @@ class OnBoardTemperatureSensor:
         pass
 
     def read_voltage(self):
-        """In real life, it should read from hardware."""         
         return 2.7
 
     def get_temperature(self):
         """Returns the temperature in celcius"""
-
         return self.read_voltage() * \
             OnBoardTemperatureSensor.VOLTAGE_TO_TEMP_FACTOR
   
@@ -38,13 +36,10 @@ class CarbonMonoxideSensor:
         return self.carbon_monoxide
 
     def read_sensor_voltage(self):
-        """In real life, it should read from hardware."""   
-
         return 2.3
 
     def convert_voltage_to_carbon_monoxide(self, voltage, temperature):
         """Converts voltage to carbon monoxide level and returns it."""
-
         return voltage * CarbonMonoxideSensor.VOLTAGE_TO_CO_FACTOR \
                 * temperature
 
