@@ -28,12 +28,12 @@ def calculate_cholesterol_level():
     else:
         print('Error: unhandled case.')
 
-# Blood test analysis program
-total_cholostrol = 70
-ldl = 30
-triglyceride = 120
-good_level(total_cholostrol, ldl, triglyceride)
-high_level(total_cholostrol, ldl, triglyceride)
-moderate_level(total_cholostrol, ldl, triglyceride)
-calculate_cholesterol_level()
+if __name__ == "__main__":
+    total_cholostrol = 70
+    ldl = 30
+    triglyceride = 120
+    good_level(total_cholostrol, ldl, triglyceride)
+    high_level(total_cholostrol, ldl, triglyceride)
+    moderate_level(total_cholostrol, ldl, triglyceride)
+    calculate_cholesterol_level()
 
