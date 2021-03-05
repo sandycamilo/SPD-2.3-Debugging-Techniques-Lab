@@ -33,18 +33,16 @@ def input_player_letter():
       letter = input().upper()
 
     if letter == 'X':
-      return ['X', 'O']
-    else:                      
-      return ['O', 'X']
+      return ['X', 'O']                  
+    return ['O', 'X']
 
 def who_goes_first():
     """
     Randomly chooses the player who will go first.
     """
     if random.randint(0, 1) == 0:
-      return 'computer'
-    else:                       
-      return 'player'
+      return 'computer'                  
+    return 'player'
 
 def play_again():
     """"
@@ -87,17 +85,18 @@ def is_space_free(board, move):
     """
     Returns true if passed move is free on passed board.
     """
-    return board[move] == ' '
+    if board[move] == ' ':
+      return True
 
 def get_player_move(board):
     """
     Player inputs in their move.
     """
-    player_move = ' ' #  https://stackoverflow.com/a/25000042/81306
+    player_move = ' ' 
     while player_move not in '1 2 3 4 5 6 7 8 9'.split() \
             or  not is_space_free(board, int(player_move)):
-      print('What is your next move? (1-9)')
-      player_move = input()
+        print('What is your next move? (1-9)')
+        player_move = input()
     return int(player_move)
 
 def choose_random_move_from_list(board, moves_list):
@@ -111,7 +110,7 @@ def choose_random_move_from_list(board, moves_list):
         possible_moves.append(i)
 
     if len(possible_moves) != 0: 
-      return random.choice(possible_moves)
+        return random.choice(possible_moves)
     return None
 
 def get_computer_move(board, computer_letter): #https://stackoverflow.com/a/25000042/81306
@@ -131,7 +130,7 @@ def get_computer_move(board, computer_letter): #https://stackoverflow.com/a/2500
       if is_space_free(copy, i):
         make_move(copy, computer_letter, i)
         if is_winner(copy, computer_letter):
-          return i
+            return i
 
     # Check if the player could win on their next move, and block them.
     for i in range(1, SPACES):
@@ -177,7 +176,7 @@ def players_turn(player_letter, board):
   """
   Player's turn to make a move.
   """
-  draw_board(board)
+  # draw_board(board)
   move = get_player_move(board)
   make_move(board, player_letter, move)
 
@@ -195,7 +194,7 @@ def game_is_playing(board, computer_letter, turn, player_letter):
   """
   while True:
     if turn == 'player':
-      players_turn(board, player_letter)
+      players_turn(player_letter, board)
       if is_winner(board, player_letter):
         draw_board(board)
         print('Hooray! You have won the game!')
@@ -206,7 +205,7 @@ def game_is_playing(board, computer_letter, turn, player_letter):
         break
       turn = 'computer'
     else: 
-      computers_turn(board, computer_letter)
+      computers_turn(computer_letter, board)
       if is_winner(board, computer_letter):
         draw_board(board)
         print('The computer has beaten you! You lose.')
